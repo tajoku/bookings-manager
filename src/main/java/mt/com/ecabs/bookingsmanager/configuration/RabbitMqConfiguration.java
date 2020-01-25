@@ -57,11 +57,10 @@ public class RabbitMqConfiguration {
     Binding bookingDeleteBinding(Queue bookingDeleteQueue, DirectExchange exchange) {
         return BindingBuilder.bind(bookingDeleteQueue).to(exchange).with("booking.delete");
     }
-
-
+    
     @Bean
-    Binding bookingExchangeBinding(DirectExchange directExchange, TopicExchange topicExchange) {
-        return BindingBuilder.bind(directExchange).to(topicExchange).with("booking.*");
+    Binding bookingExchangeBinding(DirectExchange bookingExchange, TopicExchange messageExchange) {
+        return BindingBuilder.bind(bookingExchange).to(messageExchange).with("booking.*");
     }
 
 
